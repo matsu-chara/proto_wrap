@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package example;
+
+import "google/protobuf/wrappers.proto";
+
+message Example {
+    // 1. ダイレクトに定義(デフォルト値と未指定を区別できない)
+    string foo = 1;
+
+    // 2. 専用のmessageを定義
+    message Bar {
+        string value = 1;
+    }
+    Bar bar = 2;
+
+    // 3. oneofで定義
+    oneof baz_option {
+        string baz = 3;
+    }
+
+    // 4. wrapperで定義
+    google.protobuf.StringValue mofu = 4;
+}
